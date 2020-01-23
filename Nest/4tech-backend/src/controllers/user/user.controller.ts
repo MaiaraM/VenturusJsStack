@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, BadRequestException, Delete, Param, Put } from '@nestjs/common';
 import { get } from 'http';
 import { UserService } from 'src/services/user/user.service';
 import { UserViewModel } from 'src/domain/user.viewmodel';
+import { response } from 'express';
 
 @Controller('users')
 export class UserController {
@@ -24,6 +25,16 @@ export class UserController {
 
     
         return this.userService.createNewUser(newUser);
+    }
+
+    @Delete(':userLogin')
+    deleteUser(@Param() params){
+        return this.userService.deleteUser(params.userLogin);;
+    }
+
+    @Put()
+    updateUser(@Body() newUser: UserViewModel){
+       
     }
 
 }

@@ -12,7 +12,7 @@ export class AuthController {
     @Post('login')
     login(@Body() login: LoginViewModel){
         const user = this.authService.login(login)
-        return 'Teste';
+        return user;
     }
 
 }

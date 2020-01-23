@@ -19,10 +19,15 @@ export class UserService {
 
     attemptLogin(login: LoginViewModel){
         const userList = this.userRepository.getUsers();
+       
 
         const found = userList.find( u => u.userLogin == login.userLogin &&  u.password === login.password);
+       
+        return found;
+    }
 
-        return true;
+    deleteUser(userLogin: String){
+         return this.userRepository.deleteUserByName(userLogin);
     }
 
 }
