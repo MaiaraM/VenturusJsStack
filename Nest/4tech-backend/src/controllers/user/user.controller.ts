@@ -1,14 +1,16 @@
-import { Controller, Get, Post, Body, BadRequestException, Delete, Param, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, BadRequestException, Delete, Param, Put , UseGuards } from '@nestjs/common';
 import { get } from 'http';
 import { UserService } from 'src/services/user/user.service';
 import { UserViewModel } from 'src/domain/user.viewmodel';
 import { response } from 'express';
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('users')
 export class UserController {
     
     constructor(private userService: UserService){ }
 
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     getUser(){
         return this.userService.getUsers();
