@@ -66,7 +66,7 @@ export class UserActivityService {
         return Promise.all(
             userActivities.map( userActivity => {
                 return {
-                    ...userActivities,
+                    ...userActivity,
                     imgEncoded: readFileSync(`../images/${userActivity.fileName}`, 'base64'),
                 }
             })
